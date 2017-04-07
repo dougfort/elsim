@@ -9,11 +9,16 @@ func main() {
 		[]FloorRequest{},
 	}
 
-	elevators := make([]Elevator, totalElevators)
+	var elevators []Elevator
+	for i := 0; i < TotalElevators; i++ {
+		// we could start with elevators randomly distributed by flor and state
+		elevators = append(elevators, NewElevator(i, 1, ElevatorIdle))
+	}
 	controller := NewController(elevators)
 
 	// the simulation runs in discrete 'steps'
-	// we tell each object to step
+	// we give the controller some floor requests (possibly 0)
+	// and then take a step
 	for step, stepData := range simData {
 		for _, request := range stepData {
 			controller.AcceptReqest(request)
