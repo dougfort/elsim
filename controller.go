@@ -1,11 +1,14 @@
 package main
 
 type controllerStruct struct {
+	elevators []Elevator
 }
 
 // NewController returns an entity tat implements the Controller interface
-func NewController() Controller {
-	return &controllerStruct{}
+func NewController(elevators []Elevator) Controller {
+	return &controllerStruct{
+		elevators: elevators,
+	}
 }
 
 // Step takes a single step
