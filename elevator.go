@@ -34,6 +34,11 @@ func (e *elevatorStruct) CurrentState() ElevatorState {
 	return e.curretState
 }
 
+// StartTrip starts a new trip for the elevator
+func (e *elevatorStruct) StartTrip(toFloor int) {
+
+}
+
 // PerformMaintenence brings the elevator from ElevatorWaitingMaintenence
 // to ElevatorIdle at the current floor
 func (e *elevatorStruct) PerformMaintenence() {

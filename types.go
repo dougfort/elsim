@@ -49,6 +49,9 @@ type Elevator interface {
 	// CurrentState reports the Elevator's current state
 	CurrentState() ElevatorState
 
+	// StartTrip starts a new trip for the elevator
+	StartTrip(toFloor int)
+
 	// PerformMaintenence brings the elevator from ElevatorWaitingMaintenence
 	// to ElevatorIdle at the current floor
 	PerformMaintenence()
