@@ -39,6 +39,7 @@ type Controller interface {
 }
 
 // Elevator simulates a single elevator
+// an Elevator is a state machine that moves from one ElevatorState to another
 type Elevator interface {
 	Stepper
 

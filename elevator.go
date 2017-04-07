@@ -1,7 +1,6 @@
 package main
 
 type elevatorStruct struct {
-	elevatorID   int
 	currentFloor int
 	curretState  ElevatorState
 	destFloor    int
@@ -12,12 +11,10 @@ type elevatorStruct struct {
 
 // NewElevator returns an entity tat implements the Elevator interface
 func NewElevator(
-	elevatorID int,
 	startingFloor int,
 	startingState ElevatorState,
 ) Elevator {
 	return &elevatorStruct{
-		elevatorID:   elevatorID,
 		currentFloor: startingFloor,
 		curretState:  startingState,
 	}
@@ -25,7 +22,6 @@ func NewElevator(
 
 // Step takes a single step
 func (e *elevatorStruct) Step(stepCount int) {
-
 }
 
 // CurrentFloor reports the elevator's location
@@ -36,4 +32,11 @@ func (e *elevatorStruct) CurrentFloor() int {
 // CurrentState reports the Elevator's current state
 func (e *elevatorStruct) CurrentState() ElevatorState {
 	return e.curretState
+}
+
+// PerformMaintenence brings the elevator from ElevatorWaitingMaintenence
+// to ElevatorIdle at the current floor
+func (e *elevatorStruct) PerformMaintenence() {
+	e.tripCount = 0
+	e.curretState = ElevatorIdle
 }

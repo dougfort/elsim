@@ -12,7 +12,7 @@ func main() {
 	var elevators []Elevator
 	for i := 0; i < TotalElevators; i++ {
 		// we could start with elevators randomly distributed by flor and state
-		elevators = append(elevators, NewElevator(i, 1, ElevatorIdle))
+		elevators = append(elevators, NewElevator(1, ElevatorIdle))
 	}
 	controller := NewController(elevators)
 
