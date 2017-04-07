@@ -3,7 +3,9 @@ package main
 type elevatorStruct struct {
 	currentFloor int
 	curretState  ElevatorState
-	destFloor    int
+
+	// the elevator can have multiple stops requested
+	destFloors []int
 
 	// a trip is counted when the elevator opens its doors on a destination floor
 	tripCount int
@@ -35,9 +37,14 @@ func (e *elevatorStruct) CurrentState() ElevatorState {
 }
 
 // StartTrip starts a new trip for the elevator
-func (e *elevatorStruct) StartTrip(toFloor int) {
-
+// It opens the doors to receive occupants
+func (e *elevatorStruct) StartTrip(toFloors []int) {
+	e.destFloors = toFloors // these should be in order
+	e.curretState = ElevatorDoorsOpen
 }
+
+// AddFloor adds a floor to an existing trip
+func (e *elevatorStruct) AddFloor(toFloor int)
 
 // PerformMaintenence brings the elevator from ElevatorWaitingMaintenence
 // to ElevatorIdle at the current floor

@@ -31,14 +31,21 @@ func (c *controllerStruct) Step(stepCount int) {
 
 	// see if we can start any new requests
 	var newPending []FloorRequest
+PENDING_LOOP:
 	for _, request := range c.pendingRequests {
+
 		// if there is an unoccupied elevator on the requesting floor, use it
 		for i, elevator := range c.elevators {
 			if elevator.CurrentFloor() == request.From &&
 				elevator.CurrentState() == ElevatorIdle {
-				elevator.StartTrip()
+				elevator.StartTrip(request.To)
+				c.activeRequests[i] = request
 			}
+			continue PENDING_LOOP
 		}
+
+		// if an occupied elevator is moving and will pass the From floor on
+		// its way, use that one
 	}
 
 }

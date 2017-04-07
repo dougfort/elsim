@@ -24,10 +24,10 @@ type Stepper interface {
 	Step(stepCount int)
 }
 
-// FloorRequest is a request to got from one floor to another
+// FloorRequest is a request to got from one floor to some other floors
 type FloorRequest struct {
 	From int
-	To   int
+	To   []int
 }
 
 // Controller controls the elevators
